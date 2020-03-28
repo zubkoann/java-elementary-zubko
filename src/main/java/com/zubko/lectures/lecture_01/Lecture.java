@@ -1,6 +1,6 @@
-package com.zubko.lectures;
+package com.zubko.lectures.lecture_01;
 
-public class Lecture1 {
+public class Lecture {
     public static void main(String[] args) {
         getTask1(1, 2, 3, 4);
         getTask1();

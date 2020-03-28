@@ -1,10 +1,8 @@
-package com.zubko.homework.hm1;
-
-import org.w3c.dom.ls.LSOutput;
+package com.zubko.homework.hm_01;
 
 import static java.lang.Math.*;
 
-public class Task1 {
+public class Task {
     public static void main(String[] args) {
         getTask9(20);
         getTask10(20);
