@@ -26,26 +26,13 @@ public class Table {
 
     public static void getTable(int[] col1, int[] col2) {
         if (col1.length == col2.length) {
-            final int maxLength = 5;
+            System.out.println(String.format("%10s %5s %10s %5s %10s", "Col 1", "|", "Col 2", "|", "Summ"));
             for (int i = 0; i < col1.length; i++) {
                 String[] array = new String[3];
                 array[0] = Integer.toString(col1[i]);
                 array[1] = Integer.toString(col2[i]);
                 array[2] = Integer.toString(col1[i] + col2[i]);
-
-                System.out.print(array[0]);
-                for (int j = 0; j < maxLength - array[0].length(); j++) {
-                    System.out.print(" ");
-                }
-                System.out.print("| ");
-
-                System.out.print(array[1]);
-                for (int j = 0; j < maxLength - array[1].length(); j++) {
-                    System.out.print(" ");
-                }
-                System.out.print("| ");
-                System.out.print(array[2]);
-                System.out.println();
+                System.out.println(String.format("%10s %5s %10s %5s %10s", array[0], "|", array[1], "|", array[2]));
             }
         } else if (col1.length > col2.length) {
             System.out.println("col1 is bigger than col2");
