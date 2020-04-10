@@ -1,85 +1,79 @@
 package com.zubko.homework.hm_06;
 
+/**
+ * Написать класс FractionNumber, который бы представлял тип даных "Простая Дробь"
+ * В классе должно быть две поля
+ * В классе должны быть методы (plus, minus, multiply, divide)
+ * Также, в классе должен быть метод toString, который печатает дробь в виде "2/3"
+ * Сделать этот тип данных неизменяемым (immutable)
+ */
+
 public class FractionNumber {
-    private int numerator1;
-    private int denominator1;
-    private int numerator2;
-    private int denominator2;
+    private int numerator;
+    private int denominator;
 
 
     public static void main(String[] args) {
-        FractionNumber h = new FractionNumber(3, 2, 2, 4);
-        System.out.println(h);
-        System.out.println(h.plus());
-        System.out.println(h.minus());
-        System.out.println(h.multiply());
-        System.out.println(h.divide());
+        FractionNumber h = new FractionNumber(3, 2);
+        FractionNumber d = new FractionNumber(4, 10);
+        System.out.println(h.plus(d));
+        System.out.println(h.minus(d));
+        System.out.println(h.multiply(d));
+        System.out.println(h.divide(d));
     }
 
-    public FractionNumber(int numerator1, int denominator1, int numerator2, int denominator2) {
-        if (numerator1 == 0 || denominator1 == 0 || numerator2 == 0 || denominator2 == 0)
+    public FractionNumber(int numerator, int denominator) {
+        if (numerator == 0 || denominator == 0)
             throw new ArithmeticException();
-        this.numerator1 = numerator1;
-        this.denominator1 = denominator1;
-        this.numerator2 = numerator2;
-        this.denominator2 = denominator2;
+        this.numerator = numerator;
+        this.denominator = denominator;
     }
 
-    public double plus() {
-        return (double) (numerator1 * denominator2 + numerator2 * denominator1) / (denominator1 * denominator2);
+    public FractionNumber plus(FractionNumber FractionNumber2) {
+        int numerator3 = numerator * FractionNumber2.denominator + FractionNumber2.numerator * denominator;
+        int denominator3 = denominator * FractionNumber2.denominator;
+        return new FractionNumber(numerator3, denominator3);
     }
 
-    public double minus() {
-        return (double) (numerator1 * denominator2 - numerator2 * denominator1) / (denominator1 * denominator2);
+    public FractionNumber minus(FractionNumber FractionNumber2) {
+        int numerator3 = numerator * FractionNumber2.denominator - FractionNumber2.numerator * denominator;
+        int denominator3 = denominator * FractionNumber2.denominator;
+        return new FractionNumber(numerator3, denominator3);
     }
 
-    public double multiply() {
-        return (double) (numerator1 * numerator2) / (denominator1 * denominator2);
+    public FractionNumber multiply(FractionNumber FractionNumber2) {
+        int numerator3 = numerator * FractionNumber2.numerator;
+        int denominator3 = denominator * FractionNumber2.denominator;
+        return new FractionNumber(numerator3, denominator3);
     }
 
-    public double divide() {
-        return (double) (numerator1 * denominator2 / numerator2 * denominator1);
+    public FractionNumber divide(FractionNumber FractionNumber2) {
+        int numerator3 = numerator * FractionNumber2.denominator;
+        int denominator3 = FractionNumber2.numerator * denominator;
+        return new FractionNumber(numerator3, denominator3);
     }
 
-    public int getNumerator1() {
-        return numerator1;
+    public int getNumerator() {
+        return numerator;
     }
 
-    public void setNumerator1(int numerator1) {
-        this.numerator1 = numerator1;
+    public void setNumerator(int numerator) {
+        this.numerator = numerator;
     }
 
-    public int getDenominator1() {
-        return denominator1;
+    public int getDenominator() {
+        return denominator;
     }
 
-    public void setDenominator1(int denominator1) {
-        this.denominator1 = denominator1;
+    public void setDenominator(int denominator) {
+        this.denominator = denominator;
     }
 
-    public int getNumerator2() {
-        return numerator2;
-    }
-
-    public void setNumerator2(int numerator2) {
-        this.numerator2 = numerator2;
-    }
-
-    public int getDenominator2() {
-        return denominator2;
-    }
-
-    public void setDenominator2(int denominator2) {
-        this.denominator2 = denominator2;
-    }
 
     @Override
     public String toString() {
-        return "FractionNumber{" +
-                "numerator1=" + numerator1 +
-                ", denominator1=" + denominator1 +
-                ", numerator2=" + numerator2 +
-                ", denominator2=" + denominator2 +
+        return "FractionNumber{" + numerator +
+                " / " + denominator +
                 '}';
     }
 }
