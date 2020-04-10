@@ -1,67 +1,85 @@
 package com.zubko.homework.hm_06;
 
 public class FractionNumber {
-    private int num1;
-    private int num2;
+    private int numerator1;
+    private int denominator1;
+    private int numerator2;
+    private int denominator2;
+
 
     public static void main(String[] args) {
-        FractionNumber h = new FractionNumber(30,4);
-        System.out.println(h.toString());
+        FractionNumber h = new FractionNumber(3, 2, 2, 4);
+        System.out.println(h);
         System.out.println(h.plus());
+        System.out.println(h.minus());
         System.out.println(h.multiply());
         System.out.println(h.divide());
     }
 
-    public FractionNumber(int num1, int num2) {
-        this.num1 = num1;
-        this.num2 = num2;
+    public FractionNumber(int numerator1, int denominator1, int numerator2, int denominator2) {
+        if (numerator1 == 0 || denominator1 == 0 || numerator2 == 0 || denominator2 == 0)
+            throw new ArithmeticException();
+        this.numerator1 = numerator1;
+        this.denominator1 = denominator1;
+        this.numerator2 = numerator2;
+        this.denominator2 = denominator2;
     }
 
-    public FractionNumber() {
+    public double plus() {
+        return (double) (numerator1 * denominator2 + numerator2 * denominator1) / (denominator1 * denominator2);
     }
 
-    public int plus() {
-        return this.num1 + this.num2;
+    public double minus() {
+        return (double) (numerator1 * denominator2 - numerator2 * denominator1) / (denominator1 * denominator2);
     }
 
-    public int minus() {
-        return this.num2 + this.num1;
-    }
-
-    public int multiply() {
-        return this.num2 * this.num1;
+    public double multiply() {
+        return (double) (numerator1 * numerator2) / (denominator1 * denominator2);
     }
 
     public double divide() {
-        try {
-            return (double)this.num1 / this.num2;
-        } catch (ArithmeticException e) {
-            System.out.println(e.getMessage());
-        }
-        return 0.0;
+        return (double) (numerator1 * denominator2 / numerator2 * denominator1);
     }
 
-    public int getNum1() {
-        return num1;
+    public int getNumerator1() {
+        return numerator1;
     }
 
-    public int getNum2() {
-        return num2;
+    public void setNumerator1(int numerator1) {
+        this.numerator1 = numerator1;
     }
 
-    public void setNum1(int num1) {
-        this.num1 = num1;
+    public int getDenominator1() {
+        return denominator1;
     }
 
-    public void setNum2(int num2) {
-        this.num2 = num2;
+    public void setDenominator1(int denominator1) {
+        this.denominator1 = denominator1;
+    }
+
+    public int getNumerator2() {
+        return numerator2;
+    }
+
+    public void setNumerator2(int numerator2) {
+        this.numerator2 = numerator2;
+    }
+
+    public int getDenominator2() {
+        return denominator2;
+    }
+
+    public void setDenominator2(int denominator2) {
+        this.denominator2 = denominator2;
     }
 
     @Override
     public String toString() {
         return "FractionNumber{" +
-                "num1=" + num1 +
-                ", num2=" + num2 +
+                "numerator1=" + numerator1 +
+                ", denominator1=" + denominator1 +
+                ", numerator2=" + numerator2 +
+                ", denominator2=" + denominator2 +
                 '}';
     }
 }
