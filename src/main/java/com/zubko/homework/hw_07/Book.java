@@ -1,9 +1,10 @@
-package com.zubko.lectures.lecture_07;
+package com.zubko.homework.hw_07;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Book {
-    private String id;
+    private String id = UUID.randomUUID().toString();
     private String title;
     private Author author;
     private String year;
@@ -11,7 +12,6 @@ public class Book {
     private String isbn;
 
     {
-        id = UUID.randomUUID().toString();
         title = "empty";
         author = new  Author("unknown", "unknown");
         year = "empty";
@@ -23,12 +23,17 @@ public class Book {
     }
 
     public Book(String title, Author author) {
-        this("", title, author, "", "", "");
+        this( title, author, "", "", "");
 
     }
+    public Book(String title, Author author, String year) {
+        this( title, author, year, "", "");
+    }
+    public Book(String title, Author author, String year, String description) {
+        this( title, author, year, description, "");
+    }
 
-    public Book(String id, String title, Author author, String year, String description, String isbn) {
-        this.id = id;
+    public Book( String title, Author author, String year, String description, String isbn) {
         this.title = title;
         this.author = author;
         this.year = year;
@@ -36,12 +41,24 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public String getId() {
-        return id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return  title.equals(book.title) &&
+                author.equals(book.author) &&
+                year.equals(book.year) &&
+                isbn.equals(book.isbn);
     }
 
-    public void setId(String id) {
-        this.id = id;
+    @Override
+    public int hashCode() {
+        return Objects.hash( title, author, year, isbn);
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getTitle() {
