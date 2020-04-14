@@ -1,5 +1,7 @@
 package com.zubko.homework.hm_06;
 
+import java.util.Objects;
+
 /**
  * Написать класс FractionNumber, который бы представлял тип даных "Простая Дробь"
  * В классе должно быть две поля
@@ -16,10 +18,14 @@ public class FractionNumber {
     public static void main(String[] args) {
         FractionNumber h = new FractionNumber(3, 2);
         FractionNumber d = new FractionNumber(4, 10);
+        FractionNumber k = new FractionNumber(4, 10);
         System.out.println(h.plus(d));
         System.out.println(h.minus(d));
         System.out.println(h.multiply(d));
         System.out.println(h.divide(d));
+
+        System.out.println("d==k "+k.equals(d));
+        System.out.println("h==k "+k.equals(h));
     }
 
     public FractionNumber(int numerator, int denominator) {
@@ -69,6 +75,20 @@ public class FractionNumber {
         this.denominator = denominator;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FractionNumber that = (FractionNumber) o;
+        return numerator == that.numerator &&
+                denominator == that.denominator;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numerator, denominator);
+    }
 
     @Override
     public String toString() {
