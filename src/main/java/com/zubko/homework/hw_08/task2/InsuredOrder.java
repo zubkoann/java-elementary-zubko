@@ -9,6 +9,10 @@ public class InsuredOrder extends Order {
     private String company;
     private double amount;
 
+    String id = UUID.randomUUID().toString();
+    String date = DateTimeFormatter.ofPattern("yyy/MM/dd").format(LocalDate.now());
+    String time = LocalTime.now().toString();
+
     public InsuredOrder(String company, double amount, String id, String date, String time) {
         super(id, date, time);
         this.company = company;
