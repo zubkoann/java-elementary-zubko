@@ -18,9 +18,10 @@ public class Order {
     public String date;
     public String time;
 
-    public Order(){
-        this.id = UUID.randomUUID().toString();
-        this.date = DateTimeFormatter.ofPattern("yyy/MM/dd").format(LocalDate.now());
-        this.time = LocalTime.now().toString();
+    public Order(String id, String date, String time ){
+        this.id = id;
+        this.date = date;
+        this.time = time;
     }
+
 }

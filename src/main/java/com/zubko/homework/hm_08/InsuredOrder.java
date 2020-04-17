@@ -1,10 +1,16 @@
 package com.zubko.homework.hm_08;
 
-public class InsuredOrder extends Order{
-    public String company;
-    public double amount;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
-    public InsuredOrder(String company, double amount ) {
+public class InsuredOrder extends Order {
+    private String company;
+    private double amount;
+
+    public InsuredOrder(String company, double amount, String id, String date, String time) {
+        super(id, date, time);
         this.company = company;
         this.amount = amount;
     }
