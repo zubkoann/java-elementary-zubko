@@ -18,10 +18,10 @@ public class Order {
     protected String date;
     protected String time;
 
-    public Order(String id, String date, String time ){
-        this.id = id;
-        this.date = date;
-        this.time = time;
+    public Order( ){
+        this.id = UUID.randomUUID().toString();;
+        this.date = DateTimeFormatter.ofPattern("yyy/MM/dd").format(LocalDate.now());
+        this.time = LocalTime.now().toString();
     }
 
 }

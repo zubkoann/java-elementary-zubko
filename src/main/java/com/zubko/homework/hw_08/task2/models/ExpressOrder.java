@@ -5,8 +5,8 @@ public class ExpressOrder extends Order {
     private int daysToDeliver;
 
 
-    public ExpressOrder(String courier, int daysToDeliver, String id, String date, String time) {
-        super(id, date, time);
+    public ExpressOrder(String courier, int daysToDeliver) {
+        super();
         this.courier = courier;
         this.daysToDeliver = daysToDeliver;
     }

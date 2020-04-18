@@ -1,16 +1,12 @@
-package com.zubko.homework.hw_08.task2;
+package com.zubko.homework.hw_08.task2.controllers;
 
 import com.zubko.homework.hw_08.task2.models.ExpressOrder;
 import com.zubko.homework.hw_08.task2.models.InsuredOrder;
 import com.zubko.homework.hw_08.task2.models.Order;
 import com.zubko.homework.hw_08.task2.models.OrdinaryOrder;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Orders {
     public static void main(String[] args) {
@@ -22,26 +18,16 @@ public class Orders {
 
     private static List<Order> orders = new ArrayList<>();
 
-
-
     public static void add(String type) {
-        String id = UUID.randomUUID().toString();
-        String date = DateTimeFormatter.ofPattern("yyy/MM/dd").format(LocalDate.now());
-        String time = LocalTime.now().toString();
-        String company = "AXA";
-        String courier = "Raketa";
-        double amount = 100000;
-        int daysToDeliver = 5;
-
         switch (type) {
             case "simple":
-                orders.add(new OrdinaryOrder(id, date, time));
+                orders.add(new OrdinaryOrder());
                 break;
             case "insured":
-                orders.add(new InsuredOrder(company, amount, id, date, time));
+                orders.add(new InsuredOrder("AXA", 100));
                 break;
             case "express":
-                orders.add(new ExpressOrder(courier, daysToDeliver, id, date, time));
+                orders.add(new ExpressOrder("Racket", 1));
                 break;
             default:
                 break;

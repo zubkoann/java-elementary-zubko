@@ -5,8 +5,8 @@ public class InsuredOrder extends Order {
     private double amount;
 
 
-    public InsuredOrder(String company, double amount, String id, String date, String time) {
-        super(id, date, time);
+    public InsuredOrder(String company, double amount) {
+        super();
         this.company = company;
         this.amount = amount;
     }
