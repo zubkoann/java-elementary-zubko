@@ -1,4 +1,4 @@
-package com.zubko.homework.hw_08.task2;
+package com.zubko.homework.hw_08.task2.models;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

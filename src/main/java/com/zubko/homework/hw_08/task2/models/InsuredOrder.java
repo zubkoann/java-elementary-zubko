@@ -1,4 +1,4 @@
-package com.zubko.homework.hw_08.task2;
+package com.zubko.homework.hw_08.task2.models;
 
 public class InsuredOrder extends Order {
     private String company;

@@ -1,4 +1,6 @@
-package com.zubko.homework.hw_08.task2;
+package com.zubko.homework.hw_08.task2.models;
+
+import com.zubko.homework.hw_08.task2.models.Order;
 
 public class OrdinaryOrder extends Order {
 
