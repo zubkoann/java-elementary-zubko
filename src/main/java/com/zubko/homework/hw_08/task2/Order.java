@@ -14,9 +14,9 @@ import java.util.UUID;
  * Реализовать класс для хранения списка заказов с методом добавления заказа и методом печати списка заказов.
  */
 public class Order {
-    private String id;
-    private String date;
-    private String time;
+    protected String id;
+    protected String date;
+    protected String time;
 
     public Order(String id, String date, String time ){
         this.id = id;

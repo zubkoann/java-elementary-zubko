@@ -9,9 +9,6 @@ public class ExpressOrder extends Order {
     private String courier;
     private int daysToDeliver;
 
-    String id = UUID.randomUUID().toString();
-    String date = DateTimeFormatter.ofPattern("yyy/MM/dd").format(LocalDate.now());
-    String time = LocalTime.now().toString();
 
     public ExpressOrder(String courier, int daysToDeliver, String id, String date, String time) {
         super(id, date, time);
