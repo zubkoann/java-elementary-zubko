@@ -16,6 +16,15 @@ package com.zubko.homework.hw_08.task1;
 public class ConfigurationManager {
 
     private static ConfigurationManager instance;
+    public String numberOfThreads;
+    public String runTime;
+    public String url;
+
+    private ConfigurationManager() {
+        this.numberOfThreads = getNumberOfThreads() ;
+        this.runTime = getRunTime() ;
+        this.url = getUrl() ;
+    }
 
     public static ConfigurationManager getInstance() {
         if (instance == null) {
@@ -23,7 +32,6 @@ public class ConfigurationManager {
         }
         return instance;
     }
-
 
     public  String getNumberOfThreads() {
         return (System.getenv("NUMBER_OF_THREADS") == null) ? "default"  : System.getenv("NUMBER_OF_THREADS");
