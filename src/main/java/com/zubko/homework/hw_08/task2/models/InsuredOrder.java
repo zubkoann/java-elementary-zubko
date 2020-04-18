@@ -6,7 +6,7 @@ public class InsuredOrder extends Order {
 
 
     public InsuredOrder(String company, double amount) {
-        super();
+//        super();
         this.company = company;
         this.amount = amount;
     }

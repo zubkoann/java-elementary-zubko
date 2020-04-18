@@ -1,12 +1,12 @@
 package com.zubko.homework.hw_08.task2.models;
 
 public class ExpressOrder extends Order {
-    private String courier;
-    private int daysToDeliver;
+    protected String courier;
+    protected int daysToDeliver;
 
 
     public ExpressOrder(String courier, int daysToDeliver) {
-        super();
+//        super();
         this.courier = courier;
         this.daysToDeliver = daysToDeliver;
     }

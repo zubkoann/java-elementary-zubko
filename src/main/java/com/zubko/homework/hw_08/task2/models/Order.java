@@ -13,15 +13,17 @@ import java.util.UUID;
  * «Застрахованный заказ» (компания страхования, сумма).
  * Реализовать класс для хранения списка заказов с методом добавления заказа и методом печати списка заказов.
  */
-public class Order {
+public abstract class Order {
     protected String id;
     protected String date;
     protected String time;
+    protected Boolean delivery;
 
     public Order( ){
         this.id = UUID.randomUUID().toString();;
         this.date = DateTimeFormatter.ofPattern("yyy/MM/dd").format(LocalDate.now());
         this.time = LocalTime.now().toString();
+        this.delivery = false;
     }
 
 }
