@@ -1,12 +1,12 @@
 package com.zubko.homework.hw_08.task2.models;
 
-public class InsuredOrder extends Order {
+public final class InsuredOrder extends Order {
     private String company;
     private double amount;
 
 
     public InsuredOrder(String company, double amount) {
-//        super();
+        super();
         this.company = company;
         this.amount = amount;
     }

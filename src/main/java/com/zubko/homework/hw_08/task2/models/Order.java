@@ -17,13 +17,22 @@ public abstract class Order {
     protected String id;
     protected String date;
     protected String time;
-    protected Boolean delivery;
+    protected Boolean completed;
 
-    public Order( ){
-        this.id = UUID.randomUUID().toString();;
+    public Order() {
+        this.id = UUID.randomUUID().toString();
         this.date = DateTimeFormatter.ofPattern("yyy/MM/dd").format(LocalDate.now());
         this.time = LocalTime.now().toString();
-        this.delivery = false;
+        this.completed = false;
     }
+
+    public void  completeOrder(){
+        completed = true;
+    }
+
+    public final String getTimeStamp() {
+        return "getTimeStamp " + date;
+    }
+
 
 }

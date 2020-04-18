@@ -6,10 +6,27 @@ public class ExpressOrder extends Order {
 
 
     public ExpressOrder(String courier, int daysToDeliver) {
-//        super();
+        super();
         this.courier = courier;
         this.daysToDeliver = daysToDeliver;
     }
+
+    //getTimeStamp определили как final тут переопределить нельзя
+//    @Override
+//    public String getTimeStamp() {
+//        return "my new timestamp";
+//    }
+
+
+    @Override
+    public void completeOrder() {
+        int dayDelta = 18-17;
+        if (dayDelta>daysToDeliver){
+            System.out.println("ooops!!!!!");
+        }
+        super.completeOrder();
+    }
+
 
     @Override
     public String toString() {

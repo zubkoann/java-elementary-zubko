@@ -8,6 +8,12 @@ public class AirOrder extends ExpressOrder {
         this.comp = comp;
     }
 
+    //getTimeStamp определили как final тут переопределить нельзя
+//    @Override
+//    public String getTimeStamp() {
+//        return super.getTimeStamp();
+//    }
+
     @Override
     public String toString() {
         return "AirOrder{" +
