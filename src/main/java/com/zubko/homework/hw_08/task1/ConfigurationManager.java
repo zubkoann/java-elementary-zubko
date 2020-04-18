@@ -16,39 +16,31 @@ package com.zubko.homework.hw_08.task1;
 public class ConfigurationManager {
 
     private static ConfigurationManager instance;
-    private String NUMBER_OF_THREADS;
-    private String RUN_TIME;
-    private String URL;
 
     private ConfigurationManager() {
-        NUMBER_OF_THREADS = "NUMBER_OF_THREADS" ;
-        RUN_TIME = "RUN_TIME" ;
-        URL = "URL" ;
     }
 
     public static ConfigurationManager getInstance() {
         if (instance == null) {
             instance = new ConfigurationManager();
-            instance.getValueOrDefault();
         }
         return instance;
     }
 
-    public  String getNumberOfThreads() {
-        return NUMBER_OF_THREADS;
+    public String getNumberOfThreads() {
+        return getValueOrDefault("NUMBER_OF_THREADS", "def");
     }
 
-    public  String getRunTime() {
-        return RUN_TIME;
+    public String getRunTime() {
+        return getValueOrDefault("RUN_TIME", "def");
     }
 
-    public  String getUrl() {
-        return URL;
+    public String getUrl() {
+        return getValueOrDefault("URL", "def");
     }
-    private void getValueOrDefault(){
-        NUMBER_OF_THREADS = (System.getenv("NUMBER_OF_THREADS") == null ||  System.getenv("NUMBER_OF_THREADS").isEmpty()) ?  NUMBER_OF_THREADS : System.getenv("NUMBER_OF_THREADS");
-        RUN_TIME = (System.getenv("RUN_TIME") == null ||  System.getenv("RUN_TIME").isEmpty()) ?  RUN_TIME : System.getenv("RUN_TIME");
-        URL = (System.getenv("URL") == null ||  System.getenv("URL").isEmpty()) ?  URL : System.getenv("URL");
+
+    private String getValueOrDefault(String env, String defaultValue) {
+        return (System.getenv(env) != null && !System.getenv(env).isEmpty()) ? System.getenv(env) : defaultValue;
     }
 
 
