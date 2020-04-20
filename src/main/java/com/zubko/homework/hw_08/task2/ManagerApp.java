@@ -12,13 +12,40 @@ public class ManagerApp {
         manager.add("insured");
         manager.add("express");
         manager.add("air");
-
         manager.show();
-
 
         Order o1 = new ExpressOrder("My Order", 10);
         o1.completeOrder();
         System.out.println(o1.getTimeStamp());
+
+
+//        анонимный класс
+        OrdersManager dbManager = new OrdersManager() {
+            @Override
+            public void add(String type) {
+
+            }
+
+            @Override
+            public Order get(String id) {
+                return null;
+            }
+
+            @Override
+            public Order update(Order o) {
+                return null;
+            }
+
+            @Override
+            public void delete(String id) {
+
+            }
+
+            @Override
+            public void show() {
+
+            }
+        };
 
     }
 }
