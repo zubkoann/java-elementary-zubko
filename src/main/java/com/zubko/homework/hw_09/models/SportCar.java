@@ -5,12 +5,13 @@ public class SportCar extends Car {
     private double engine;
     private int power;
 
-    public SportCar(String brand, int year, int price, String equipment, String country, String saleDate, String customer, int maxspeed, double engine, int power) {
-        super(brand, year, price, equipment, country, saleDate, customer);
+    public SportCar(int id, String brand, int year, int price, String equipment, String country, String saleDate, String customer, int maxspeed, double engine, int power) {
+        super(id, brand, year, price, equipment, country, saleDate, customer);
         this.maxspeed = maxspeed;
         this.engine = engine;
         this.power = power;
     }
+
 
     @Override
     public String getInfo() {

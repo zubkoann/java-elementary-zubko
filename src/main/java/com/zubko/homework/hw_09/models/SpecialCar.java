@@ -4,8 +4,8 @@ public class SpecialCar extends Car {
     private String type;
     private int weight;
 
-    public SpecialCar(String brand, int year, int price, String equipment, String country, String saleDate, String customer, String type, int weight) {
-        super(brand, year, price, equipment, country, saleDate, customer);
+    public SpecialCar(int id, String brand, int year, int price, String equipment, String country, String saleDate, String customer, String type, int weight) {
+        super(id, brand, year, price, equipment, country, saleDate, customer);
         this.type = type;
         this.weight = weight;
     }

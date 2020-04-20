@@ -4,8 +4,8 @@ public class UsedCar extends Car {
     private String owner;
     private int mileage;
 
-    public UsedCar(String brand, int year, int price, String equipment, String country, String saleDate, String customer, String owner, int mileage) {
-        super(brand, year, price, equipment, country, saleDate, customer);
+    public UsedCar(int id, String brand, int year, int price, String equipment, String country, String saleDate, String customer, String owner, int mileage) {
+        super(id, brand, year, price, equipment, country, saleDate, customer);
         this.owner = owner;
         this.mileage = mileage;
     }
