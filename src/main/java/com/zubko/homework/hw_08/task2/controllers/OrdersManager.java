@@ -1,40 +1,16 @@
 package com.zubko.homework.hw_08.task2.controllers;
 
-import com.zubko.homework.hw_08.task2.models.*;
+import com.zubko.homework.hw_08.task2.models.Order;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class OrdersManager {
+public abstract class OrdersManager {
+    public abstract void add(String type);
 
-    private  List<Order> orders;
+    public abstract Order get(String id);
 
-    public OrdersManager() {
-        orders = new ArrayList<>();
-    }
+    public abstract Order update(Order o);
 
-    public void add(String type) {
-        switch (type) {
-            case "simple":
-                orders.add(new OrdinaryOrder());
-                break;
-            case "insured":
-                orders.add(new InsuredOrder("AXA", 100));
-                break;
-            case "express":
-                orders.add(new ExpressOrder("Racket", 1));
-                break;
-            case "air":
-                orders.add(new AirOrder("Racket", 1, "Air"));
-                break;
-            default:
-                break;
-        }
-    }
+    public abstract void delete(String id);
 
-    public  void show() {
-        for (Order order:orders){
-            System.out.println(order);
-        }
-    }
+    public abstract void show();
 }
