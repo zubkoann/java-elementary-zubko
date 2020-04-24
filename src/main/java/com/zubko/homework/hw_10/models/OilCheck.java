@@ -1,29 +1,27 @@
 package com.zubko.homework.hw_10.models;
 
 public class OilCheck implements Service {
-    private int service;
+    private int servicePrice;
     private String type;
 
-    public OilCheck(int service) {
-        this.service = service;
+    public OilCheck(int servicePrice) {
+        this.servicePrice = servicePrice;
         this.type = "Oil Check";
     }
 
-
     @Override
-    public int perform() {
-        return service;
+    public void perform() {
+        System.out.println(type + " - " + servicePrice);
     }
 
-    @Override
-    public String getType() {
-        return type;
+    public int getServicePrice() {
+        return servicePrice;
     }
 
     @Override
     public String toString() {
         return "OilCheck{" +
-                "service=" + service +
+                "servicePrice=" + servicePrice +
                 '}';
     }
 

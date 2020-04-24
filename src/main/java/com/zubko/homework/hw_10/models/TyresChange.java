@@ -1,28 +1,27 @@
 package com.zubko.homework.hw_10.models;
 
 public class TyresChange implements Service {
-    protected int service;
+    protected int servicePrice;
     protected String type;
 
-    public TyresChange(int service) {
-        this.service = service;
+    public TyresChange(int servicePrice) {
+        this.servicePrice = servicePrice;
         this.type = "Tyres Change";
     }
 
     @Override
-    public int perform() {
-        return service;
+    public void perform() {
+        System.out.println(type + " - " + servicePrice);
     }
 
-    @Override
-    public String getType() {
-        return type;
+    public int getServicePrice() {
+        return servicePrice;
     }
 
     @Override
     public String toString() {
         return "TyresChange{" +
-                "service=" + service +
+                "servicePrice=" + servicePrice +
                 '}';
     }
 }

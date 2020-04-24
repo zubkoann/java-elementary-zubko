@@ -31,14 +31,16 @@ public class ActControll {
         System.out.println();
         System.out.println("Services:");
 
-        act.getService().forEach((el) -> System.out.println(el.getType() + " - " + el.perform()));
+        act.getService().forEach((el) -> {
+            el.perform();
+        });
 
         System.out.println();
         System.out.println("Products:");
         products.forEach((el) -> System.out.println(el.getProduct() + " - " + el.getPrice()));
 
         System.out.println();
-        System.out.println("Sum:" + act.getSum());
+        System.out.println("Sum: " + act.getSum());
         System.out.println();
 
         System.out.println("Worker: " + act.getWorker().getSurname() + " " + act.getWorker().getFirstName());

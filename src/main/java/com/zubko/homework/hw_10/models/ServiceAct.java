@@ -33,7 +33,7 @@ public class ServiceAct {
 
     public void setAct(Service service) {
         this.service.add(service);
-        this.sum += service.perform();
+        this.sum += service.getServicePrice();
     }
 
     public void setProducts(Product... products) {
@@ -80,9 +80,11 @@ public class ServiceAct {
         return "ServiceAct{" +
                 "id=" + id +
                 ", service=" + service +
+                ", products=" + products +
                 ", worker=" + worker +
                 ", customer=" + customer +
                 ", closed='" + closed + '\'' +
+                ", sum=" + sum +
                 '}';
     }
 }

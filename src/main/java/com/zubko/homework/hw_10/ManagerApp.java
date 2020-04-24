@@ -30,7 +30,7 @@ public class ManagerApp {
         acts.add(act2);
         acts.getAct(1);
 
-//        System.out.println(acts.searchByCustomer("P", "Sultan"));
-//        System.out.println(acts.searchByWorker("P", "Sidorov"));
+        System.out.println(acts.searchByCustomer("P", "Sultan"));
+        System.out.println(acts.searchByWorker("P", "Sidorov"));
     }
 }
