@@ -1,5 +1,9 @@
 package com.zubko.homework.hw_10.models;
 
+import com.zubko.homework.hw_10.models.services.Service;
+import com.zubko.homework.hw_10.models.users.Customer;
+import com.zubko.homework.hw_10.models.users.Worker;
+
 import java.util.ArrayList;
 import java.util.List;
 

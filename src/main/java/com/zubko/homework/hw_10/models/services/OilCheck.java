@@ -1,12 +1,12 @@
-package com.zubko.homework.hw_10.models;
+package com.zubko.homework.hw_10.models.services;
 
-public class TyresChange implements Service {
-    protected int servicePrice;
-    protected String type;
+public class OilCheck implements Service {
+    private int servicePrice;
+    private String type;
 
-    public TyresChange(int servicePrice) {
+    public OilCheck(int servicePrice) {
         this.servicePrice = servicePrice;
-        this.type = "Tyres Change";
+        this.type = "Oil Check";
     }
 
     @Override
@@ -20,8 +20,10 @@ public class TyresChange implements Service {
 
     @Override
     public String toString() {
-        return "TyresChange{" +
+        return "OilCheck{" +
                 "servicePrice=" + servicePrice +
                 '}';
     }
+
+
 }
