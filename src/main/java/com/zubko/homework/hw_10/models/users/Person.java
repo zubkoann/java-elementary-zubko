@@ -1,14 +1,8 @@
-package com.zubko.homework.hw_10.models;
+package com.zubko.homework.hw_10.models.users;
 
-public class Customer {
-    private String surname;
-    private String firstName;
-
-
-    public Customer(String surname, String firstName) {
-        this.surname = surname;
-        this.firstName = firstName;
-    }
+public class Person {
+    protected String surname;
+    protected String firstName;
 
     public String getSurname() {
         return surname;

@@ -1,7 +1,14 @@
 package com.zubko.homework.hw_10;
 
 import com.zubko.homework.hw_10.controllers.ActControll;
-import com.zubko.homework.hw_10.models.*;
+import com.zubko.homework.hw_10.models.Product;
+import com.zubko.homework.hw_10.models.ServiceAct;
+import com.zubko.homework.hw_10.models.services.OilChange;
+import com.zubko.homework.hw_10.models.services.OilCheck;
+import com.zubko.homework.hw_10.models.services.Service;
+import com.zubko.homework.hw_10.models.services.TyresChange;
+import com.zubko.homework.hw_10.models.users.Customer;
+import com.zubko.homework.hw_10.models.users.Worker;
 
 public class ManagerApp {
     public static void main(String[] args) {

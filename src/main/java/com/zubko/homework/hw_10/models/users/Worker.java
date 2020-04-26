@@ -1,22 +1,10 @@
-package com.zubko.homework.hw_10.models;
+package com.zubko.homework.hw_10.models.users;
 
-public class Worker {
-    private String surname;
-    private String firstName;
-
+public class Worker extends Person {
 
     public Worker(String surname, String firstName) {
         this.surname = surname;
         this.firstName = firstName;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-
-    public String getFirstName() {
-        return firstName;
     }
 
 

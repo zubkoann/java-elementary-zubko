@@ -1,4 +1,4 @@
-package com.zubko.homework.hw_10.models;
+package com.zubko.homework.hw_10.models.services;
 
 public interface Service {
 
