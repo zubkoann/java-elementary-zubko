@@ -8,7 +8,7 @@ public class Url {
     private String domain;
     private String port;
     private String path;
-    private List<Param> param = new ArrayList<>();
+    private List<Param> param;
 
     private Url(String protocol, String domain, String port, String path, List<Param> param) {
         this.protocol = protocol;
@@ -60,7 +60,6 @@ public class Url {
         }
 
         public UrlBuilder setDomain(String domain) {
-            if (this.protocol == null) throw new NullPointerException("protocol is null");
             this.domain = domain;
             return this;
         }
