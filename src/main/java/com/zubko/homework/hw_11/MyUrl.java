@@ -116,12 +116,12 @@ public class MyUrl {
     public String getUrl() {
         StringBuilder str = new StringBuilder();
         str.append(protocol).append("://").append(domain);
-        if (port.isEmpty()) str.append(":").append(port);
-        if (path.isEmpty()) str.append("/").append(path);
+        if (port != null) str.append(":").append(port);
+        if (!path.isEmpty()) str.append("/").append(path);
         if (this.param.size() > 0) {
             str.append("?");
             for (Param pr : param) {
-                if (pr.getValue().isEmpty()) {
+                if (pr.getValue() != null) {
                     str.append(pr.getParam()).append("&");
                 } else {
                     str.append(pr.getParam()).append("=")
