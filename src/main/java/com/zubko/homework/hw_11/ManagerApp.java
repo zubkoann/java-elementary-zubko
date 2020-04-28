@@ -8,6 +8,7 @@ public class ManagerApp {
                 .setPort("8800")
                 .setPath("getSomeInfo")
                 .setParam("name", "Pete")
+                .setParam("anotherSomeName")
                 .setParam("surname", "Some")
                 .build();
         System.out.println(url.getUrl());

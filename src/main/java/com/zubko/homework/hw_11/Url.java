@@ -27,6 +27,10 @@ public class Url {
             this.value = value;
         }
 
+        private Param(String param) {
+            this.param = param;
+        }
+
         public String getParam() {
             return param;
         }
@@ -74,6 +78,11 @@ public class Url {
             return this;
         }
 
+        public UrlBuilder setParam(String param) {
+            this.param.add(new Param(param));
+            return this;
+        }
+
         public UrlBuilder setParam(String param, String value) {
             this.param.add(new Param(param, value));
             return this;
@@ -103,8 +112,12 @@ public class Url {
         if (this.param.size() > 0) {
             str.append("?");
             for (Param pr : param) {
-                str.append(pr.getParam()).append("=")
-                        .append(pr.getValue()).append("&");
+                if (pr.getValue() == null) {
+                    str.append(pr.getParam()).append("&");
+                } else {
+                    str.append(pr.getParam()).append("=")
+                            .append(pr.getValue()).append("&");
+                }
             }
         }
         return str.toString().replaceFirst("&$", "");
