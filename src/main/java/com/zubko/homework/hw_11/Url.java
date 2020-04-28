@@ -17,6 +17,12 @@ public class Url {
         this.path = path;
         this.param = param;
     }
+//    private Url(){}
+
+
+    public String getProtocol() {
+        return protocol;
+    }
 
     private static class Param {
         private String param;
@@ -49,31 +55,34 @@ public class Url {
     }
 
     public static class UrlBuilder {
+//        private Url url = new Url();
+
         private String protocol;
         private String domain;
         private String port;
         private String path;
         private List<Param> param = new ArrayList<>();
 
-        public UrlBuilder() {
-        }
-
         public UrlBuilder setProtocol(String protocol) {
+//            url.protocol = protocol;
             this.protocol = protocol;
             return this;
         }
 
         public UrlBuilder setDomain(String domain) {
+//            url.domain = domain;
             this.domain = domain;
             return this;
         }
 
         public UrlBuilder setPort(String port) {
+//            url.port = port;
             this.port = port;
             return this;
         }
 
         public UrlBuilder setPath(String path) {
+//            url.path = path;
             this.path = path;
             return this;
         }
@@ -107,12 +116,12 @@ public class Url {
     public String getUrl() {
         StringBuilder str = new StringBuilder();
         str.append(protocol).append("://").append(domain);
-        if (port != null) str.append(":").append(port);
-        if (path != null) str.append("/").append(path);
+        if (port.isEmpty()) str.append(":").append(port);
+        if (path.isEmpty()) str.append("/").append(path);
         if (this.param.size() > 0) {
             str.append("?");
             for (Param pr : param) {
-                if (pr.getValue() == null) {
+                if (pr.getValue().isEmpty()) {
                     str.append(pr.getParam()).append("&");
                 } else {
                     str.append(pr.getParam()).append("=")

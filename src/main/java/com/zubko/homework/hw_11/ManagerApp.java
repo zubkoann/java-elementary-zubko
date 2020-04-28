@@ -7,12 +7,13 @@ public class ManagerApp {
                 .setDomain("google.com")
                 .setPort("8800")
                 .setPath("getSomeInfo")
+                .setPath("getSomeInfo")
                 .setParam("name", "Pete")
                 .setParam("anotherSomeName")
                 .setParam("surname", "Some")
                 .build();
         System.out.println(url.getUrl());
-
+        System.out.println(url.getProtocol());
 
     }
 }
