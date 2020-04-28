@@ -3,14 +3,14 @@ package com.zubko.homework.hw_11;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Url {
+public class MyUrl {
     private String protocol;
     private String domain;
     private String port;
     private String path;
     private List<Param> param;
 
-    private Url(String protocol, String domain, String port, String path, List<Param> param) {
+    private MyUrl(String protocol, String domain, String port, String path, List<Param> param) {
         this.protocol = protocol;
         this.domain = domain;
         this.port = port;
@@ -97,8 +97,8 @@ public class Url {
             return this;
         }
 
-        public Url build() {
-            return new Url(protocol, domain, port, path, param);
+        public MyUrl build() {
+            return new MyUrl(protocol, domain, port, path, param);
         }
     }
 
