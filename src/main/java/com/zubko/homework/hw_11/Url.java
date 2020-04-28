@@ -65,25 +65,21 @@ public class Url {
         }
 
         public UrlBuilder setPort(String port) {
-            if (this.domain == null) throw new NullPointerException("domain is null");
             this.port = port;
             return this;
         }
 
         public UrlBuilder setPath(String path) {
-            if (this.domain == null) throw new NullPointerException("domain is null");
             this.path = path;
             return this;
         }
 
         public UrlBuilder setParam(String param, String value) {
-            if (this.domain == null) throw new NullPointerException("domain is null");
             this.param.add(new Param(param, value));
             return this;
         }
 
         public Url build() {
-            if (this.domain == null) throw new NullPointerException("domain is null");
             return new Url(protocol, domain, port, path, param);
         }
     }
