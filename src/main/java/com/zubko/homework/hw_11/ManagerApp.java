@@ -13,7 +13,5 @@ public class ManagerApp {
                 .setParam("surname", "Some")
                 .build();
         System.out.println(url.getUrl());
-
-
     }
 }
