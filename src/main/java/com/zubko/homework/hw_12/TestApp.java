@@ -14,11 +14,6 @@ package com.zubko.homework.hw_12;
 public class TestApp {
     public static void main(String[] args) {
         WorkHoursControl f = new WorkHoursControl();
-        WorkHoursControl f2 = new WorkHoursControl(11);
-
-        f.setBeginOfWorkDay(8);
-
         System.out.println(f.countTimeLeft());
-        System.out.println(f2.countTimeLeft());
     }
 }
