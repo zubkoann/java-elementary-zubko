@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class WorkHoursControl {
 
-    public static String countTimeLeft() {
+    public String countTimeLeft() {
         int hours = 0;
         Day[] days = Day.values();
 
