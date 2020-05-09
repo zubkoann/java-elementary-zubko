@@ -47,4 +47,40 @@ public class CredentialsFileDataMapper implements CredentialsDataMapper {
         }
         throw new CredentialsNotFoundException("No credential for " + service);
     }
+
+    @Override
+    public Credentials findById(String id) {
+        for (Credentials c : creds) {
+            if (c.getId().equals(id)) {
+                return c;
+            }
+        }
+        throw new CredentialsNotFoundException("No credential for " + id);
+    }
+
+    @Override
+    public Credentials delete(String id) {
+        Credentials c = findById(id);
+        creds.remove(c);
+        return c;
+    }
+
+    @Override
+    public Credentials update(String ind, Credentials cr) {
+        Credentials c = findById(ind);
+        int index = creds.indexOf(c);
+        creds.add(index, cr);
+        return cr;
+    }
+
+    @Override
+    public Credentials create(Credentials cr) {
+        creds.add(cr);
+        return cr;
+    }
+
+    @Override
+    public List<Credentials> getAll() {
+        return creds;
+    }
 }
