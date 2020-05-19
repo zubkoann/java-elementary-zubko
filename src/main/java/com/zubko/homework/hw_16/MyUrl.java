@@ -1,7 +1,6 @@
 package com.zubko.homework.hw_16;
 
 import java.util.HashMap;
-import java.util.Map;
 
 //Изменить поле params со String на HashMap
 //        Добавить метод withParams(HashMap params), который добавляет параметры
@@ -13,9 +12,9 @@ public class MyUrl {
     private String domain;
     private String port;
     private String path;
-    private Map<String, String> param;
+    private HashMap<String, String> param;
 
-    private MyUrl(String protocol, String domain, String port, String path, Map<String, String> param) {
+    private MyUrl(String protocol, String domain, String port, String path, HashMap<String, String> param) {
         this.protocol = protocol;
         this.domain = domain;
         this.port = port;
@@ -28,7 +27,7 @@ public class MyUrl {
         private String domain;
         private String port;
         private String path;
-        private Map<String, String> param = new HashMap<>();
+        private HashMap<String, String> param = new HashMap<>();
 
         public UrlBuilder withProtocol(String protocol) {
             this.protocol = protocol;
@@ -57,6 +56,11 @@ public class MyUrl {
 
         public UrlBuilder withParam(String param, String value) {
             this.param.put(param, value);
+            return this;
+        }
+
+        public UrlBuilder withParam(HashMap<String, String> param) {
+            this.param.putAll(param);
             return this;
         }
 
