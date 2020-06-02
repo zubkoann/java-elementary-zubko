@@ -82,8 +82,12 @@ public class MyUrl {
 
     public String getUrl() {
         StringBuilder str = new StringBuilder();
-        if (protocol != null && !protocol.isEmpty()) str.append(protocol).append("://").append(domain);
+
+        if (protocol != null && !protocol.isEmpty() && !domain.isEmpty() && domain != null)
+            str.append(protocol).append("://").append(domain);
+        else if (domain.isEmpty() && domain == null) throw new NullPointerException();
         else str.append(domain);
+
         if (port != null && !port.isEmpty()) str.append(":").append(port);
         if (!path.isEmpty()) str.append("/").append(path);
         if (this.param.size() > 0) {

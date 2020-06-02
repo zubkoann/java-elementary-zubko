@@ -71,9 +71,14 @@ public class TestMyUrl {
                 .withParam((HashMap<String, String>) map)
                 .build();
         String actual = url.getUrl();
-        System.out.println(actual);
-
         assertTrue("Param failed", expected.equalsIgnoreCase(actual));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testWithoutDomain() {
+        MyUrl url = new MyUrl.UrlBuilder()
+                .build();
+        url.getUrl();
     }
 
 }
