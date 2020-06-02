@@ -32,7 +32,7 @@ public class StringUtils {
                 alphabet = "qwertyuioplkjhgfdsazxcvbnm";
                 break;
             case "alfanumeric":
-                alphabet = "1234567890qwertyuioplkjhgfdsazxcvbnm";
+                alphabet = "1234567890qwertyuiopasdfghjklzxcvbnm";
                 break;
             default:
                 return "ERROR";

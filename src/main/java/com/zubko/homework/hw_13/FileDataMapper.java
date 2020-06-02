@@ -10,10 +10,10 @@ import java.util.List;
 public class FileDataMapper implements DataMapper {
     private List<User> users = new ArrayList<>();
 
-    public FileDataMapper() {
+    public FileDataMapper(String file) {
         BufferedReader br = null;
         try {
-            br = new BufferedReader(new FileReader("users.txt"));
+            br = new BufferedReader(new FileReader(file));
             String line;
             while ((line = br.readLine()) != null) {
                 String item[] = line.split(",");

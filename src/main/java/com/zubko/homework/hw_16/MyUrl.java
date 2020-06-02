@@ -23,10 +23,10 @@ public class MyUrl {
     }
 
     public static class UrlBuilder {
-        private String protocol;
+        private String protocol = "";
         private String domain;
-        private String port;
-        private String path;
+        private String port = "";
+        private String path = "";
         private HashMap<String, String> param = new HashMap<>();
 
         public UrlBuilder withProtocol(String protocol) {
@@ -82,8 +82,13 @@ public class MyUrl {
 
     public String getUrl() {
         StringBuilder str = new StringBuilder();
-        str.append(protocol).append("://").append(domain);
-        if (port != null) str.append(":").append(port);
+
+        if (protocol != null && !protocol.isEmpty() && !domain.isEmpty() && domain != null)
+            str.append(protocol).append("://").append(domain);
+        else if (domain.isEmpty() && domain == null) throw new NullPointerException();
+        else str.append(domain);
+
+        if (port != null && !port.isEmpty()) str.append(":").append(port);
         if (!path.isEmpty()) str.append("/").append(path);
         if (this.param.size() > 0) {
             str.append("?");
