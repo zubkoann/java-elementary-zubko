@@ -3,6 +3,7 @@ package test_hm_13;
 import com.zubko.homework.hw_13.DataMapper;
 import com.zubko.homework.hw_13.FileDataMapper;
 import com.zubko.homework.hw_13.User;
+import com.zubko.homework.hw_13.UserNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,6 +36,21 @@ public class FileDataMapperTest {
         User expectedUser = new User("2", "Ivanov", "Ivanov@gmail.com", "54323", "user");
         User actualUser = mapper.findUserByEmail("Ivanov@gmail.com");
         assertEquals("Find by Email is failed", actualUser, expectedUser);
+    }
+
+    @Test(expected = UserNotFoundException.class)
+    public void testNotFoundExceptionByEmail() {
+        mapper.findUserByEmail("Ivanov55555@gmail.com");
+    }
+
+    @Test(expected = UserNotFoundException.class)
+    public void testNotFoundExceptionByName() {
+        mapper.findUserByEmail("Krukov");
+    }
+
+    @Test(expected = UserNotFoundException.class)
+    public void testNotFoundExceptionById() {
+        mapper.findUserByEmail("122");
     }
 
 }
