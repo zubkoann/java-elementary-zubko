@@ -1,21 +1,19 @@
 package test_hm_04;
 
 import com.zubko.homework.hm_04.StringUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 public class StringUtilsTest {
 
     private String numeric = StringUtils.getStringUtils("numeric", 10);
     private String alfa = StringUtils.getStringUtils("alfa", 20);
     private String alfanumeric = StringUtils.getStringUtils("alfanumeric", 30);
-    private char[] alfaArray = "qwertyuiopasdfghjklzxcvbnm".toCharArray();
-    private char[] numericArray = "1234567890".toCharArray();
-    private char[] alfaNumericArray = "1234567890qwertyuiopasdfghjklzxcvbnm".toCharArray();
+//    private char[] alfaArray = "qwertyuiopasdfghjklzxcvbnm".toCharArray();
+//    private char[] numericArray = "1234567890".toCharArray();
+//    private char[] alfaNumericArray = "1234567890qwertyuiopasdfghjklzxcvbnm".toCharArray();
 
     @Test
     public void testLength() {
@@ -26,23 +24,28 @@ public class StringUtilsTest {
 
     @Test
     public void testNumeric() {
-        for (char ch : numeric.toCharArray()) {
-            assertFalse("Isn't numeric", Arrays.asList(numericArray).contains(ch));
-        }
+        Assert.assertTrue("Isn't numeric", numeric.matches("\\d+"));
+//        for (char ch : numeric.toCharArray()) {
+//            assertFalse("Isn't numeric", Arrays.asList(numericArray).contains(ch));
+//        }
     }
 
     @Test
     public void testAlfa() {
-        for (char ch : alfa.toCharArray()) {
-            assertFalse("Isn't numeric", Arrays.asList(alfaArray).contains(ch));
-        }
+        Assert.assertTrue("Isn't numeric", numeric.matches("\\w+"));
+
+//        for (char ch : alfa.toCharArray()) {
+//            assertFalse("Isn't numeric", Arrays.asList(alfaArray).contains(ch));
+//        }
     }
 
     @Test
     public void testAlfaNumeric() {
-        for (char ch : alfanumeric.toCharArray()) {
-            assertFalse("Isn't numeric", Arrays.asList(alfaNumericArray).contains(ch));
-        }
+        Assert.assertTrue("Isn't numeric", numeric.matches("\\w+\\d+"));
+//
+//        for (char ch : alfanumeric.toCharArray()) {
+//            assertFalse("Isn't numeric", Arrays.asList(alfaNumericArray).contains(ch));
+//        }
     }
 
 }

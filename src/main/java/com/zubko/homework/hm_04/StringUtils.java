@@ -20,9 +20,12 @@ public class StringUtils {
         System.out.println(getStringUtils("alfanumeric", 20));
     }
 
+    public enum typeS {NUMERIC, ALFA, ALFANUMERIC}
+
     public static String getStringUtils(String type, int length) {
         StringBuilder str = new StringBuilder("");
         String alphabet = "";
+
 
         switch (type) {
             case "numeric":
