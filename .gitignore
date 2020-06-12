@@ -4,3 +4,4 @@ target/
 sandbox/
 .gitignore
 *.txt
+*.db
