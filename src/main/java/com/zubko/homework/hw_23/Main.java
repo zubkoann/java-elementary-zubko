@@ -6,20 +6,19 @@ import com.zubko.homework.hw_23.data.DataBaseUserDataMapper;
 import com.zubko.homework.hw_23.data.FileUserDataMapper;
 import com.zubko.homework.hw_23.data.UserDataMapper;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
 
         List<User> users = getMapper().getAll();
         UserDatabaseConnector db = UserDatabaseConnector.getInstance();
-//        for (User user:users){
-//            db.insert(user);
-//        }
-//        db.delete(8);
+        for (User user : users) {
+            db.insert(user);
+        }
+        db.delete(8);
         db.update(new User("10", "Mayak", "mayak@ua.ua", "34242", "director"));
-//        db.findBy("id","11");
+//        db.findBy("id","10");
         db.getAll();
     }
 
