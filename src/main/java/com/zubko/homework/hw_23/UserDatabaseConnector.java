@@ -1,19 +1,18 @@
 package com.zubko.homework.hw_23;
 
+import com.zubko.homework.hw_13.UserNotFoundException;
 import com.zubko.homework.hw_23.config.Config;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDatabaseConnector {
     private static UserDatabaseConnector instance;
 
     public static UserDatabaseConnector getInstance() {
         if (instance == null) {
-            try {
-                instance = new UserDatabaseConnector();
-            } catch (Exception e) {
-                throw new RuntimeException("");
-            }
+            instance = new UserDatabaseConnector();
         }
         return instance;
     }
@@ -22,9 +21,8 @@ public class UserDatabaseConnector {
         try {
             createNewTable();
         } catch (Exception e) {
-            throw new RuntimeException("");
+            throw new RuntimeException("Failed createNewTable connection");
         }
-
     }
 
     private Connection connect() {
@@ -32,14 +30,14 @@ public class UserDatabaseConnector {
         try {
             conn = DriverManager.getConnection(Config.getInstance().getDbUrl());
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException("Failed connection" + e);
         }
         return conn;
     }
 
     private void createNewTable() {
         final String sql = "CREATE TABLE IF NOT EXISTS users ("
-                + "	id INTEGER PRIMARY KEY autoincrement,"
+                + "	id INTEGER PRIMARY KEY  autoincrement,"
                 + "	userName VARCHAR(20) NOT NULL,"
                 + "	email VARCHAR(20) NOT NULL,"
                 + "	password VARCHAR(20) NOT NULL,"
@@ -49,10 +47,9 @@ public class UserDatabaseConnector {
         try (Connection conn = connect();
              Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
-        System.out.println("Таблица создана");
     }
 
     public void insert(User user) {
@@ -63,9 +60,9 @@ public class UserDatabaseConnector {
             pstmt.setString(2, user.getEmail());
             pstmt.setString(3, user.getPassword());
             pstmt.setString(4, user.getRole());
-            pstmt.executeUpdate();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            pstmt.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed connection" + e);
         }
     }
 
@@ -76,69 +73,93 @@ public class UserDatabaseConnector {
             pstmt.setInt(1, id);
             pstmt.execute();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException("Failed connection" + e);
         }
         System.out.println("User deleted = " + id);
     }
 
     public void update(User user) {
-        String sql = "UPDATE main.users set userName='?', email='?', password='?', role='?'   WHERE id = ?";
+        String sql = "UPDATE users set userName = ?, email = ?, password = ?, role = ? WHERE id = ?";
         int id = Integer.valueOf(user.getId());
-        try (Connection conn = connect();
+        try (Connection conn = DriverManager.getConnection(Config.getInstance().getDbUrl());
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, user.getUserName());
             pstmt.setString(2, user.getEmail());
             pstmt.setString(3, user.getPassword());
             pstmt.setString(4, user.getRole());
             pstmt.setInt(5, id);
-            pstmt.execute();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed connection" + e);
         }
         System.out.println("User update = " + user);
 
     }
 
-    public void findBy(String param, String value) {
-        String sql = "SELECT * FROM main.users WHERE ? = ?";
-        try (Connection conn = connect();
+    public User findBy(String param, String value) {
+        String sql = "SELECT * FROM users where ? = ?;";
+        try (Connection conn = DriverManager.getConnection(Config.getInstance().getDbUrl());
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, param);
+
             if (param.equals("id")) {
-                pstmt.setString(1, param);
                 pstmt.setInt(2, Integer.valueOf(value));
             } else {
-                pstmt.setString(1, param);
                 pstmt.setString(2, value);
             }
+
             ResultSet rs = pstmt.executeQuery();
-            System.out.println(rs.next());
-            while (rs.next()) {
-                System.out.println(rs.getInt("id") + "\t" +
-                        rs.getString("userName") + "\t" +
-                        rs.getString("email") + "\t" +
-                        rs.getString("password") + "\t" +
+            if (rs.next()) {
+                return new User(
+                        Integer.toString(rs.getInt("id")),
+                        rs.getString("userName"),
+                        rs.getString("email"),
+                        rs.getString("password"),
                         rs.getString("role"));
+            } else {
+                throw new UserNotFoundException(param + " with " + value + " NOT FOUND");
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed connection");
         }
-        System.out.println("User search = " + param + ": " + value);
     }
 
-    public void getAll() {
+    public User findById(int value) {
+        String sql = "SELECT * FROM users WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(Config.getInstance().getDbUrl());
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, value);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return new User(Integer.toString(rs.getInt("id")),
+                        rs.getString("userName"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("role"));
+            } else {
+                throw new RuntimeException("not found");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed connection" + e.getMessage());
+        }
+    }
+
+    public List<User> getAll() {
         String sql = "SELECT * FROM users;";
+        List<User> array = new ArrayList<>();
         try (Connection conn = connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                System.out.println(rs.getInt("id") + "\t" +
-                        rs.getString("userName") + "\t" +
-                        rs.getString("email") + "\t" +
-                        rs.getString("password") + "\t" +
-                        rs.getString("role"));
+            if (rs.next()) {
+                array.add(new User(Integer.toString(rs.getInt("id")),
+                        rs.getString("userName"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("role")));
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            return array;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed connection" + e);
         }
     }
 
