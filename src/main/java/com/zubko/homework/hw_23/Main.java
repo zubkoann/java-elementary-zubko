@@ -6,13 +6,15 @@ import com.zubko.homework.hw_23.data.DataBaseUserDataMapper;
 import com.zubko.homework.hw_23.data.FileUserDataMapper;
 import com.zubko.homework.hw_23.data.UserDataMapper;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
         UserDatabaseConnector db = UserDatabaseConnector.getInstance();
         User u = new User("", "Some", "some@milo.ua", "77777", "admin");
         db.insert(u);
-//        List<User> users = getMapper().getAll();
+        List<User> users = getMapper().getAll();
 //        for (User user : users) {
 //            db.insert(user);
 //        }
@@ -23,8 +25,7 @@ public class Main {
 
         System.out.println(db.findBy("role", "admin"));
 
-//        List<User> users = getMapper().getAll();
-//        System.out.println(users);
+        System.out.println(users);
     }
 
     public static UserDataMapper getMapper() {

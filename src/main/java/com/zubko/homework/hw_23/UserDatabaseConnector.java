@@ -25,15 +25,6 @@ public class UserDatabaseConnector {
         }
     }
 
-    private Connection connect() {
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(Config.getInstance().getDbUrl());
-        } catch (SQLException e) {
-            throw new RuntimeException("Failed connection" + e);
-        }
-        return conn;
-    }
 
     private void createNewTable() {
         final String sql = "CREATE TABLE IF NOT EXISTS users ("
@@ -44,7 +35,7 @@ public class UserDatabaseConnector {
                 + "	role VARCHAR(20)"
                 + ");";
 
-        try (Connection conn = connect();
+        try (Connection conn = DriverManager.getConnection(Config.getInstance().getDbUrl());
              Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
@@ -54,7 +45,7 @@ public class UserDatabaseConnector {
 
     public void insert(User user) {
         String sql = "INSERT INTO users(userName,email, password, role) VALUES(?,?,?,?);";
-        try (Connection conn = connect();
+        try (Connection conn = DriverManager.getConnection(Config.getInstance().getDbUrl());
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, user.getUserName());
             pstmt.setString(2, user.getEmail());
@@ -68,7 +59,7 @@ public class UserDatabaseConnector {
 
     public void delete(int id) {
         String sql = "DELETE FROM users WHERE id = ?;";
-        try (Connection conn = connect();
+        try (Connection conn = DriverManager.getConnection(Config.getInstance().getDbUrl());
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.execute();
@@ -147,7 +138,7 @@ public class UserDatabaseConnector {
     public List<User> getAll() {
         String sql = "SELECT * FROM users;";
         List<User> array = new ArrayList<>();
-        try (Connection conn = connect();
+        try (Connection conn = DriverManager.getConnection(Config.getInstance().getDbUrl());
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             if (rs.next()) {
