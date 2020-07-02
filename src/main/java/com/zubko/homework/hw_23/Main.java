@@ -6,21 +6,24 @@ import com.zubko.homework.hw_23.data.DataBaseUserDataMapper;
 import com.zubko.homework.hw_23.data.FileUserDataMapper;
 import com.zubko.homework.hw_23.data.UserDataMapper;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
 
-        List<User> users = getMapper().getAll();
         UserDatabaseConnector db = UserDatabaseConnector.getInstance();
-//        for (User user:users){
+        User u = new User("", "Some", "some@milo.ua", "77777", "admin");
+//        db.insert(u);
+        List<User> users = getMapper().getAll();
+//        for (User user : users) {
 //            db.insert(user);
 //        }
-//        db.delete(8);
-        db.update(new User("10", "Mayak", "mayak@ua.ua", "34242", "director"));
-//        db.findBy("id","11");
-        db.getAll();
+//        db.delete(31);
+//        db.update(new User("1", "Mayak", "mayak@ua.ua", "34242", "director"));
+//        System.out.println(db.findBy("userName","Zubko"));
+//        System.out.println(db.findById(2));
+        System.out.println(db.findBy("role", "admin"));
+        System.out.println(users);
     }
 
     public static UserDataMapper getMapper() {
