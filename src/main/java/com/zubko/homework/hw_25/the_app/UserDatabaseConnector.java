@@ -1,7 +1,7 @@
-package com.zubko.homework.hw_23;
+package com.zubko.homework.hw_25.the_app;
 
 import com.zubko.homework.hw_13.UserNotFoundException;
-import com.zubko.homework.hw_23.config.Config;
+import com.zubko.homework.hw_25.the_app.config.Config;
 
 import java.sql.*;
 import java.util.ArrayList;

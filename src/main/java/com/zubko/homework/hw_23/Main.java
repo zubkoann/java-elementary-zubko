@@ -13,7 +13,7 @@ public class Main {
 
         UserDatabaseConnector db = UserDatabaseConnector.getInstance();
         User u = new User("", "Some", "some@milo.ua", "77777", "admin");
-        db.insert(u);
+//        db.insert(u);
         List<User> users = getMapper().getAll();
 //        for (User user : users) {
 //            db.insert(user);
@@ -22,9 +22,7 @@ public class Main {
 //        db.update(new User("1", "Mayak", "mayak@ua.ua", "34242", "director"));
 //        System.out.println(db.findBy("userName","Zubko"));
 //        System.out.println(db.findById(2));
-
         System.out.println(db.findBy("role", "admin"));
-
         System.out.println(users);
     }
 
