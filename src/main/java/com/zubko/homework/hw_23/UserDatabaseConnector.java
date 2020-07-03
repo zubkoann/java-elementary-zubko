@@ -1,11 +1,11 @@
 package com.zubko.homework.hw_23;
 
-import com.zubko.homework.hw_13.UserNotFoundException;
 import com.zubko.homework.hw_23.config.Config;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class UserDatabaseConnector {
     private static UserDatabaseConnector instance;
@@ -87,59 +87,62 @@ public class UserDatabaseConnector {
 
     }
 
-    public User findBy(String param, String value) {
+    public Optional<User> findBy(String param, String value) {
         String sql = "SELECT * FROM users WHERE " + param + "='" + value + "';";
         List<User> array = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(Config.getInstance().getDbUrl());
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                return new User(
-                        Integer.toString(rs.getInt("id")),
-                        rs.getString("userName"),
-                        rs.getString("email"),
-                        rs.getString("password"),
-                        rs.getString("role"));
-            } else {
-                throw new UserNotFoundException(param + " with " + value + " NOT FOUND");
-            }
+            if (rs.getRow() == 0) {
+                return Optional.empty();
+            } else
+                rs.next();
+            rs.close();
+
+            return Optional.ofNullable(new User(
+                    Integer.toString(rs.getInt("id")),
+                    rs.getString("userName"),
+                    rs.getString("email"),
+                    rs.getString("password"),
+                    rs.getString("role")));
+
         } catch (SQLException e) {
             throw new RuntimeException("Failed connection");
         }
     }
 
-    public User findById(int value) {
-        String sql = "SELECT * FROM users WHERE id = ?";
+    public Optional<User> findById(int id) {
+        String sql = "SELECT * FROM users WHERE id = ?;";
         try (Connection conn = DriverManager.getConnection(Config.getInstance().getDbUrl());
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, value);
+            pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                return new User(Integer.toString(rs.getInt("id")),
-                        rs.getString("userName"),
-                        rs.getString("email"),
-                        rs.getString("password"),
-                        rs.getString("role"));
-            } else {
-                throw new RuntimeException("not found");
-            }
+            if (rs.getRow() == 0) {
+                return Optional.empty();
+            } else
+                rs.next();
+            return Optional.ofNullable(new User(Integer.toString(rs.getInt("id")),
+                    rs.getString("userName"),
+                    rs.getString("email"),
+                    rs.getString("password"),
+                    rs.getString("role")));
         } catch (SQLException e) {
             throw new RuntimeException("Failed connection" + e.getMessage());
         }
     }
 
-    public List<User> getAll() {
+    public List<Optional<User>> getAll() {
         String sql = "SELECT * FROM users;";
-        List<User> array = new ArrayList<>();
+        List<Optional<User>> array = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(Config.getInstance().getDbUrl());
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-            if (rs.next()) {
-                array.add(new User(Integer.toString(rs.getInt("id")),
+            while (rs.next()) {
+                array.add(Optional.ofNullable(new User(Integer.toString(rs.getInt("id")),
                         rs.getString("userName"),
                         rs.getString("email"),
                         rs.getString("password"),
-                        rs.getString("role")));
+                        rs.getString("role"))));
             }
             return array;
         } catch (SQLException e) {
